@@ -1,0 +1,13 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"single": "tficore:blocks/potato_compr_single",
+		"double": "tficore:blocks/potato_compr_double",
+		"triple": "tficore:blocks/potato_compr_triple",
+		"quadruple": "tficore:blocks/potato_compr_quadruple",
+		"quintuple": "tficore:blocks/potato_compr_quintuple",
+		"sextuple": "tficore:blocks/potato_compr_sextuple",
+		"septuple": "tficore:blocks/potato_compr_septuple",
+		"octuple": "tficore:blocks/potato_compr_octuple"
+	}
+}

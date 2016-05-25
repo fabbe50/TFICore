@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tficore",
+  "name": "TFICore",
+  "description": "Base mod for all The Fifth Idiot mods.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["(fabbe50/Teemo)"],
+  "credits": "The Teemo's Shroomland creators.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

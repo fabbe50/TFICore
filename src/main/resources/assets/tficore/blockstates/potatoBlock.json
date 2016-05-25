@@ -1,0 +1,17 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "variant=single": [{ "textures": { "all": "tficore:blocks/potato_compr_single" } }],
+        "variant=double": [{ "textures": { "all": "tficore:blocks/potato_compr_double" } }],
+        "variant=triple": [{ "textures": { "all": "tficore:blocks/potato_compr_triple" } }],
+        "variant=quadruple": [{ "textures": { "all": "tficore:blocks/potato_compr_quadruple" } }],
+        "variant=quintuple": [{ "textures": { "all": "tficore:blocks/potato_compr_quintuple" } }],
+        "variant=sextuple": [{ "textures": { "all": "tficore:blocks/potato_compr_sextuple" } }],
+        "variant=septuple": [{ "textures": { "all": "tficore:blocks/potato_compr_septuple" } }],
+        "variant=octuple": [{ "textures": { "all": "tficore:blocks/potato_compr_octuple" } }]
+    }
+}

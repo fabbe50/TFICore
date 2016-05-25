@@ -45,3 +45,16 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.properties
+.gradle/2.7/taskArtifacts/cache.properties.lock
+*.bin
+.settings/org.eclipse.core.resources.prefs
+*.prefs
+.project
+.classpath
+TFICore_Client.launch
+TFICore_Server.launch
+build
+bin
+run
+eclipse

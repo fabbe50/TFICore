@@ -1,0 +1,35 @@
+Folder structure, this is how Minecraft will find your resources without extensive tinkering.
+-subfolders are supported, but remember to tell your code that it has to look deeper.
+
+assets.modid
+├───blockstates
+├───font
+├───lang
+├───loot_tables
+│   ├───chests
+│   ├───entities
+│   └───gameplay
+├───models
+│   ├───block
+│   └───item
+├───shaders
+│   ├───post
+│   └───program
+├───structures
+├───texts
+└───textures
+    ├───blocks
+    ├───colormap
+    ├───effect
+    ├───entity
+    ├───environment
+    ├───font
+    ├───gui
+    │   ├───container
+    ├───items
+    ├───map
+    ├───misc
+    ├───models
+    │   └───armor
+    ├───painting
+    └───particle

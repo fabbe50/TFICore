@@ -1,0 +1,76 @@
+HOW TO USE THE RESOURCES FOLDER!
+Explained by fabbe50...
+
+Structure for the resources folder is the following:
+#################################################
+#      assets                                   #folder
+#           mod-id                              #folder
+#               blockstates                     #folder
+#                   exampleBlock.json           #json-file
+#                   exampleBlock2.json          #json-file
+#               lang                            #folder
+#                   en_US.lang                  #lang-file
+#               models                          #folder
+#                   block                       #folder
+#                       exampleBlock.json       #json-file
+#                       exampleBlock2.json      #json-file
+#                   item                        #folder
+#                       exampleBlock.json       #json-file
+#                       exampleBlock2.json      #json-file
+#               sounds                          #folder
+#               textures                        #folder
+#                   blocks                      #folder
+#                       exampleBlock.png        #png-file
+#                       exampleBlock2.png       #png-file
+#                   entity                      #folder
+#                   items                       #folder
+#               mcmod.info                      #info-file
+#################################################
+NOTE: Everything in this file structure is case-sensitive.
+NOTE 2: For full file structure check the "resstruct.txt"-file in the same folder as this file.
+
+Explanation of what everything is for:
+*   So all the files placed inside the "blockstates"-folder are for different blocks. These '.json'-files are made to explain for the game what texture and what model should be
+    used, depending on the state of the block. Code example below!
+*   The "lang"-folder holds all the localization files. These '.lang'-files are structured in a special way so feel free to use the "en_US.lang"-file included in this mod as a template.
+*   Inside the models folder blocks and items are separated into two folders "block" & "item"
+    *   The "block"-folder is for adding the block model of the placed block, this is also where you set texture and what sides the specific texture should render on.
+    *   The "item"-folder is for adding the item-form model of the block (if it's dropped in the world or in inventory). The rotation, translation and scale is not needed when setting
+        up a normal block since it defaults to the numbers shown below (the numbers are placed there for tutorial purposes and do nothing to the actual model).
+    
+    
+#####################################################
+#blockstates/testBlock.json                         #
+#####################################################
+#{                                                  #
+#    "variants": {                                  #
+#        "normal": { "model": "tficore:testBlock" } #
+#    }                                              #
+#}                                                  #
+#####################################################
+
+#####################################################
+#models/block/testBlock.json                        #
+#####################################################
+#{                                                  #
+#    "parent": "block/cube_all",                    #
+#    "textures": {                                  #
+#        "all": "tficore:blocks/testBlock"          #
+#    }                                              #
+#}                                                  #
+#####################################################
+
+#####################################################
+#models/item/testBlock.json                         #
+#####################################################
+#{                                                  #
+#    "parent": "tficore:block/testBlock",           #
+#    "display": {                                   #
+#        "thirdperson": {                           #
+#            "rotation": [ 10, -45, 170 ],          #
+#            "translation": [ 0, 1.5, -2.75 ],      #
+#            "scale": [ 0.375, 0.375, 0.375 ]       #
+#        }                                          #
+#    }                                              #
+#}                                                  #
+#####################################################
