@@ -5,13 +5,13 @@
         "transform": "forge:default-block"
     },
     "variants": {
-        "variant=single": [{ "textures": { "all": "tficore:blocks/potato_compr_single" } }],
-        "variant=double": [{ "textures": { "all": "tficore:blocks/potato_compr_double" } }],
-        "variant=triple": [{ "textures": { "all": "tficore:blocks/potato_compr_triple" } }],
-        "variant=quadruple": [{ "textures": { "all": "tficore:blocks/potato_compr_quadruple" } }],
-        "variant=quintuple": [{ "textures": { "all": "tficore:blocks/potato_compr_quintuple" } }],
-        "variant=sextuple": [{ "textures": { "all": "tficore:blocks/potato_compr_sextuple" } }],
-        "variant=septuple": [{ "textures": { "all": "tficore:blocks/potato_compr_septuple" } }],
-        "variant=octuple": [{ "textures": { "all": "tficore:blocks/potato_compr_octuple" } }]
+        "type=single": [{ "textures": { "all": "tficore:blocks/potato_compr_single" } }],
+        "type=double": [{ "textures": { "all": "tficore:blocks/potato_compr_double" } }],
+        "type=triple": [{ "textures": { "all": "tficore:blocks/potato_compr_triple" } }],
+        "type=quadruple": [{ "textures": { "all": "tficore:blocks/potato_compr_quadruple" } }],
+        "type=quintuple": [{ "textures": { "all": "tficore:blocks/potato_compr_quintuple" } }],
+        "type=sextuple": [{ "textures": { "all": "tficore:blocks/potato_compr_sextuple" } }],
+        "type=septuple": [{ "textures": { "all": "tficore:blocks/potato_compr_septuple" } }],
+        "type=octuple": [{ "textures": { "all": "tficore:blocks/potato_compr_octuple" } }]
     }
 }

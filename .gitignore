@@ -58,3 +58,6 @@ build
 bin
 run
 eclipse
+TFICore.iws
+*.ipr
+TFICore.iml

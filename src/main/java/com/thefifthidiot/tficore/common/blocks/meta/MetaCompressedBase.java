@@ -24,6 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
+@SuppressWarnings("unchecked")
 public class MetaCompressedBase extends Block implements IMetaBlockName{
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", MetaCompressedBase.EnumType.class);
 	
@@ -39,7 +40,7 @@ public class MetaCompressedBase extends Block implements IMetaBlockName{
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-	    return getDefaultState().withProperty(TYPE, EnumType.values()[meta]);
+	    return this.getDefaultState().withProperty(TYPE, EnumType.byMetadata(meta));
 	}
 
 	@Override
@@ -59,10 +60,10 @@ public class MetaCompressedBase extends Block implements IMetaBlockName{
         }
 	}
 	
-	@Override
-	public String getSpecialName(ItemStack stack) {
-	    return EnumType.values()[stack.getItemDamage()].name().toLowerCase();
-	}
+//	@Override
+//	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos) {
+//	    return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world.getBlockState(pos)));
+//	}
 	
 	public enum EnumType implements IStringSerializable {
 	    SINGLE(0, "single"),
@@ -74,20 +75,50 @@ public class MetaCompressedBase extends Block implements IMetaBlockName{
 	    SEPTUPLE(6, "septuple"),
 	    OCTUPLE(7, "octuple");
 		
-		private int metaData;
+		private static final EnumType[] META_LOOKUP = new EnumType[values().length];
+		private int meta;
 		private String name;
 		
-		private EnumType(int metaData, String name) {
+		private EnumType(int meta, String name) {
 			this.name = name;
-			this.metaData = metaData;
+			this.meta = meta;
+		}
+		
+		public String getUnlocalizedName() {
+			return this.name;
 		}
 		
 		public String getName() {
-			return name;
+			return this.name;
 		}
 		
 		public int getMetadata() {
-			return metaData;
+			return this.meta;
 		}
+
+	    public static EnumType byMetadata(int meta){
+	        if (meta < 0 || meta >= META_LOOKUP.length) {
+	            meta = 0;
+	        }
+	        return META_LOOKUP[meta];
+	    }
+		
+		static{
+	        for (EnumType e : values()){
+	            META_LOOKUP[e.getMetadata()] = e;
+	        }
+	    }
+	}
+
+	@Override
+	public String getSpecialName(ItemStack stack) {
+	    return stack.getItemDamage() == 0 ? "single" : 
+	    	(stack.getItemDamage() == 1 ? "double" : 
+	    		(stack.getItemDamage() == 2 ? "triple" : 
+	    			(stack.getItemDamage() == 3 ? "quadruple" : 
+	    				(stack.getItemDamage() == 4 ? "quintuple" : 
+	    					(stack.getItemDamage() == 5 ? "sextuple" : 
+	    						(stack.getItemDamage() == 6 ? "septuple" : 
+	    							(stack.getItemDamage() == 7 ? "octuple" : "single")))))));
 	}
 }

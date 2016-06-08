@@ -7,7 +7,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ItemBlockMetaBase extends ItemBlock {
-
+	String blockname;
+	
     public ItemBlockMetaBase(Block block) {
         super(block);
         if (!(block instanceof IMetaBlockName)) {
@@ -15,6 +16,7 @@ public class ItemBlockMetaBase extends ItemBlock {
         }
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
+        this.blockname = block.getRegistryName().getResourcePath();
     }
 
     public int getMetadata(int damage)
@@ -24,6 +26,6 @@ public class ItemBlockMetaBase extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + "." + ((IMetaBlockName)this.block).getSpecialName(stack);
+        return "tile." + super.getRegistryName().getResourcePath() + "." + ((IMetaBlockName)this.block).getSpecialName(stack);
     }
 }

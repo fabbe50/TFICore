@@ -1,5 +1,5 @@
 {
-	"parent": "tficore:block/potato_compr_single",
+	"parent": "tficore:block/potatoBlock_single",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

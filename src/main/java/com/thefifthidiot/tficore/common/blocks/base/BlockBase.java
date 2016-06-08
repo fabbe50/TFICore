@@ -1,4 +1,4 @@
-package com.thefifthidiot.tficore.common.blocks;
+package com.thefifthidiot.tficore.common.blocks.base;
 
 import java.util.List;
 import java.util.Random;

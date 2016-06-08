@@ -8,18 +8,19 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 
 public final class BlockRenderer {
 	public static void registerBlockRenderer() {
 		registerBlock(BlockRegistry.testBlock, 0);
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 0, "potato_compr_single");
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 1, "potato_compr_double");
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 2, "potato_compr_triple");
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 3, "potato_compr_quadruple");
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 4, "potato_compr_quintuple");
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 5, "potato_compr_sextuple");
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 6, "potato_compr_septuple");
-		registerMetaBlocks(BlockRegistry.testMetaBlock, 7, "potato_compr_octuple");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 0, "single");//, "potato_compr_single", "single");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 1, "double");//, "potato_compr_double", "double");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 2, "triple");//, "potato_compr_triple", "triple");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 3, "quadruple");//, "potato_compr_quadruple", "quadruple");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 4, "quintuple");//, "potato_compr_quintuple", "quintuple");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 5, "sextuple");//, "potato_compr_sextuple", "sextuple");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 6, "septuple");//, "potato_compr_septuple", "septuple");
+		registerMetaBlockItem(BlockRegistry.testMetaBlock, 7, "octuple");//, "potato_compr_octuple", "octuple");
 	}
 	
 	/*	Register rendering!
@@ -32,8 +33,19 @@ public final class BlockRenderer {
 		LogHelper.info("Registered renderdata for block with registry-name: " + block.getRegistryName());
 	}
 	
-	public static void registerMetaBlocks(Block block, int meta, String file) {
-	    Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
+	public static void registerMetaBlockItem(Block block, int meta, String type) {
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(block.getRegistryName(), "type=" + type));
+		LogHelper.info("Registered renderdata for block with registry-name: " + block.getRegistryName() + "." + type);
+	}
+	
+	public static void registerMetaBlocks(Block block, int meta, String type) {
+		//ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), meta, new ModelResourceLocation(block.getRegistryName(), "type=" + type));
+	    //Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta, new ModelResourceLocation(Reference.MOD_ID + ":" + file, "inventory"));
 	    LogHelper.info("Registered renderdata for block with registry-name: " + block.getRegistryName());
+	}
+	
+	private static String getItemResourceLocation(Block block, String string) {
+		LogHelper.info(block.getRegistryName() + "_" + string);
+		return block.getRegistryName() + "_" + string;
 	}
 }

@@ -2,6 +2,8 @@ package com.thefifthidiot.tficore.common.blocks;
 
 import javax.annotation.Nullable;
 
+import com.thefifthidiot.tficore.common.blocks.base.BlockBase;
+
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

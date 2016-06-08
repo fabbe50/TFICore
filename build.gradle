@@ -1,89 +1,133 @@
-
-// For those who want the bleeding edge
 buildscript {
     repositories {
-        jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
+        mavenCentral()
+        maven {url = "http://files.minecraftforge.net/maven"}
+        maven {url = "https://oss.sonatype.org/content/repositories/snapshots/"}
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
 
-/*
-// for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
 plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
-*/
 
-ext.configFile = file('build.properties')
+apply plugin: 'maven-publish'
+
+ext.configFile = file('gradle.properties')
 ext.config = parseConfig(configFile)
 
-version = "${config.mc_version}_${config.version}-${config.build_number}"
-group= "com.thefifthidiot.tficore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = config.mod_name
+def build_number = 'CUSTOM'
+
+if (build_number == 'CUSTOM')
+    build_number = mod_build
+
+def username = 'DevPlayer'
+
+if (project.hasProperty('dev_username'))
+    username = "${dev_username}"
+
+group = package_group
+archivesBaseName = mod_name
+version = "${mod_version}-${mod_state}${build_number}"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    version = "${config.mc_version}-${config.forge_version}"
+    version = "${mc_version}-${forge_version}"
     runDir = "run"
     
-    // the mappings can be changed at any time, and must be in the following format.
-    // snapshot_YYYYMMDD   snapshot are built nightly.
-    // stable_#            stables are built at the discretion of the MCP team.
-    // Use non-default mappings at your own risk. they may not allways work.
-    // simply re-run your setup task after changing the mappings to update your workspace.
-    mappings = "snapshot_20160312"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    replace "@VERSION@", project.version
+    replaceIn "Reference.java"
+    
+    replace "@BUILD@", build_number
+    replaceIn "Reference.java"
+
+    clientRunArgs += "--username=${username}"
+
+    if (project.hasProperty('mappings_version'))
+        mappings = project.mappings_version
+}
+
+repositories {
+    maven { url "http://dvs1.progwml6.com/files/maven" }
+    maven { url "http://mobiusstrip.eu/maven" }
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
+processResources {
     inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    inputs.property "mc_version", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        include '**/*.info'
+        include '**/*.properties'
+
+        expand 'version': project.version, 'mc_version': project.minecraft.version
     }
-        
-    // copy everything else, thats not the mcmod.info
+
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude '**/*.info'
+        exclude '**/*.properties'
     }
 }
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+version = "${project.minecraft.version}-${version}"
+
+jar {
+    classifier = ''
+    manifest.mainAttributes(
+            "Built-By": System.getProperty('user.name'),
+            "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            //"Git-Hash": gitHash,
+            "Built-On": "${mc_version}-${forge_version}"
+    )
+}
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        if (project.hasProperty('maven_repo')) {
+            maven { url maven_repo }
+        } else {
+            mavenLocal()
+        }
+    }
+}
+
+task incrementBuildNumber {
+    config.mod_build = (config.mod_build.toString().toInteger()) + 1
+    configFile.withWriter {
+        config.toProperties().store(it, "")
+    }
+}
+
+def parseConfig(File config) {
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
+}
+
+defaultTasks 'clean', 'build', 'incrementBuildNumber'

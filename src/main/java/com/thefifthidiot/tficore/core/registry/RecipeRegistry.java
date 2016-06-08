@@ -15,7 +15,7 @@ public class RecipeRegistry {
 						" d ", //Mid Line
 						"# #", //Bottom Line
 						'#', ItemRegistry.testItem, //Used Item
-						'd', Blocks.dirt //Used Item
+						'd', Blocks.DIRT //Used Item
 				});
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.testItem, 4),
 				new Object[]{

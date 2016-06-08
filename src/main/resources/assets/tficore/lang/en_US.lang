@@ -17,7 +17,15 @@ tile.tficore:testBlock.name=Testing Block
 #############################################################################
 #                                Meta Blocks                                #
 #############################################################################
-
+#Compressed Potato
+tile.potato_compr.single.name=Single Compressed Potato
+tile.potato_compr.double.name=Double Compressed Potato
+tile.potato_compr.triple.name=Triple Compressed Potato
+tile.potato_compr.quadruple.name=Quadruple Compressed Potato
+tile.potato_compr.quintuple.name=Quintuple Compressed Potato
+tile.potato_compr.sextuple.name=Sextuple Compressed Potato
+tile.potato_compr.septuple.name=Septuple Compressed Potato
+tile.potato_compr.octuple.name=Octuple Compressed Potato
 
 #############################################################################
 #                                   Mobs                                    #
