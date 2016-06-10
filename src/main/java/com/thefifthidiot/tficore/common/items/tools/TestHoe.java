@@ -12,7 +12,6 @@ import net.minecraft.item.ItemHoe;
 import net.minecraft.item.Item.ToolMaterial;
 
 public class TestHoe extends ItemHoe {
-
 	public TestHoe(String unlocalizedName, ToolMaterial material, @Nullable CreativeTabs tab) {
 		super(material);
 		this.setUnlocalizedName(unlocalizedName);

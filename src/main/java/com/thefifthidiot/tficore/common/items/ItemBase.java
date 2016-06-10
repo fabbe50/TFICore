@@ -20,7 +20,6 @@ import com.thefifthidiot.tficore.core.registry.ItemRegistry;
 import com.thefifthidiot.tficore.lib.Configs;
 
 public class ItemBase extends Item {
-
 	public ItemBase(String itemName, CreativeTabs tab) {
 		setItemName(this, itemName);
 		setCreativeTab(tab != null ? tab : (Configs.tfitabs == true ? TFITab.itemTab : null));

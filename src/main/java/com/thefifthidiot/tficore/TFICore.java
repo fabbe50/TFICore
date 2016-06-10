@@ -1,6 +1,7 @@
 package com.thefifthidiot.tficore;
 
 import com.thefifthidiot.tficore.common.blocks.TestBlock;
+import com.thefifthidiot.tficore.core.commands.CommandRainVote;
 import com.thefifthidiot.tficore.core.event.WorldEvents;
 import com.thefifthidiot.tficore.core.proxy.CommonProxy;
 import com.thefifthidiot.tficore.core.reference.Reference;
@@ -14,16 +15,15 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
+import net.minecraftforge.fml.common.event.*;
 
 /*	Hello and welcome to the main mod-class, this is where your mod is born.
  * 	
@@ -74,7 +74,12 @@ public class TFICore
     }
     
     @EventHandler
-    public void onServerStart(FMLServerStartedEvent event) {
-    	if(Configs.disableRain){MinecraftForge.EVENT_BUS.register(new WorldEvents());}
+    public void onServerStart(FMLServerStartingEvent event) {
+		event.registerServerCommand(new CommandRainVote());
+    }
+
+    @EventHandler
+    public void onServerStarted(FMLServerStartedEvent event) {
+        if(Configs.rainVoting || true){MinecraftForge.EVENT_BUS.register(new WorldEvents());}
     }
 }

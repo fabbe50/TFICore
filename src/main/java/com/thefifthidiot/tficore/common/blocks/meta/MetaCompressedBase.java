@@ -60,11 +60,6 @@ public class MetaCompressedBase extends Block implements IMetaBlockName{
         }
 	}
 	
-//	@Override
-//	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos) {
-//	    return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world.getBlockState(pos)));
-//	}
-	
 	public enum EnumType implements IStringSerializable {
 	    SINGLE(0, "single"),
 	    DOUBLE(1, "double"),

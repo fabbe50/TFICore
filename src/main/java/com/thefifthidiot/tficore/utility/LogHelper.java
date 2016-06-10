@@ -10,17 +10,17 @@ import org.apache.logging.log4j.Level;
 public class LogHelper
 {
 	/*	Made for easy logging by Pahimar!
-	 * 	Information obtained, modified and printed in class by fabbe50/Teemo
+	 * 	Information/code obtained, modified and printed in class by fabbe50/Teemo
 	 * 
 	 * 	Usage: LogHelper.<level>(messageToPrint);
-	 * 	@func all - All events should be logged.
+	 * 	@func all   - All events should be logged.
 	 * 	@func debug - A general debugging event.
 	 * 	@func error - An error in the application, possibly recoverable.
 	 * 	@func fatal - A severe error that will prevent the application from continuing.
-	 * 	@func info - An event for informational purposes.
-	 * 	@func off - No events will be logged.
+	 * 	@func info  - An event for informational purposes.
+	 * 	@func off   - No events will be logged.
 	 * 	@func trace - A fine-grained debug message, typically capturing the flow through the application.
-	 * 	@func warn - An event that might possible lead to an error.
+	 * 	@func warn  - An event that might possible lead to an error.
 	 */
 	
     private static void log(Level logLevel, Object object) {
@@ -32,6 +32,7 @@ public class LogHelper
     public static void error(Object object) {log(Level.ERROR, object);}
     public static void fatal(Object object) {log(Level.FATAL, object);}
     public static void info(Object object) {if (Configs.infoLogging){log(Level.INFO, object);}}
+    public static void finfo(Object object) {log(Level.INFO, object);}
     public static void off(Object object) {log(Level.OFF, object);}
     public static void trace(Object object) {log(Level.TRACE, object);}
     public static void warn(Object object) {log(Level.WARN, object);}

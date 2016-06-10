@@ -12,7 +12,6 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemAxe;
 
 public class TestAxe extends ItemAxe {
-
 	public TestAxe(String unlocalizedName, ToolMaterial material, @Nullable CreativeTabs tab) {
 		super(material);
 		this.setUnlocalizedName(unlocalizedName);

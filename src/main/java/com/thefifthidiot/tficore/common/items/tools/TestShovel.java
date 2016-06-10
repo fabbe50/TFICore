@@ -12,7 +12,6 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemSpade;
 
 public class TestShovel extends ItemSpade {
-
 	public TestShovel(String unlocalizedName, ToolMaterial material, @Nullable CreativeTabs tab) {
 		super(material);
 		this.setUnlocalizedName(unlocalizedName);
