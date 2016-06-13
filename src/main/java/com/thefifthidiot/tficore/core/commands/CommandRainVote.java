@@ -9,13 +9,8 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-
-import java.io.File;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by fabbe50 on 08/06/2016.
@@ -45,18 +40,37 @@ public class CommandRainVote extends CommandBase implements IEntityLivingData {
 
         if (player instanceof EntityPlayer) {
             if (!world.isRemote) {
-                if (player.getTags().contains("norain") || args[0] == "true") {
-                    player.removeTag("norain");
-                    player.addChatMessage(new TextComponentString("Rain will now appear in the world you're in!"));
-                    LogHelper.info("Removed tag \"norain\" from player: " + player.getDisplayName().toString());
-                } else if (!player.getTags().contains("norain") || args[0] == "false") {
-                    player.addTag("norain");
-                    player.addChatMessage(new TextComponentString("Rain will no longer appear in the world you're in!"));
-                    LogHelper.info("Added tag \"norain\" to player: " + player.getDisplayName().toString());
-                } else {
-                    LogHelper.info("Command failed! Called by: " + player.getDisplayName().toString());
+                try {
+                    if (player.getTags().contains("norain") && args[0] == "true") {
+                        removeTag(player);
+                    } else if (!player.getTags().contains("norain") && args[0] == "false") {
+                        addTag(player);
+                    } else {
+                        LogHelper.info("Command failed! Called by: " + player.getDisplayName().getUnformattedText());
+                    }
+                }
+                catch (Exception e) {
+                    if (player.getTags().contains("norain")) {
+                        removeTag(player);
+                    } else if (!player.getTags().contains("norain")) {
+                        addTag(player);
+                    } else {
+                        LogHelper.info("Command failed! Called by: " + player.getDisplayName().getUnformattedText());
+                    }
                 }
             }
         }
+    }
+
+    private void addTag(Entity player) {
+        player.addTag("norain");
+        player.addChatMessage(new TextComponentString("Rain will no longer appear in the world you're in!"));
+        LogHelper.info("Added tag \"norain\" to player: " + player.getDisplayName().getUnformattedText());
+    }
+
+    private void removeTag(Entity player) {
+        player.removeTag("norain");
+        player.addChatMessage(new TextComponentString("Rain will now appear in the world you're in!"));
+        LogHelper.info("Removed tag \"norain\" from player: " + player.getDisplayName().getUnformattedText());
     }
 }

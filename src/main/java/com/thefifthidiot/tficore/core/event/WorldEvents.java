@@ -26,16 +26,16 @@ public class WorldEvents {
             String[] players = server.getPlayerList().getAllUsernames();
 
             try {
-                if (worldinfo.getCleanWeatherTime() <= 1000 && server.getPlayerList().getCurrentPlayerCount() > 0) { //if the weather turns to rain and the there are at least 1 player
+                if (worldinfo.getCleanWeatherTime() <= 1000 && server.getPlayerList().getCurrentPlayerCount() > 0) {    //if the weather turns to rain and the there are at least 1 player
                     for (int j = 0; j < server.getPlayerList().getCurrentPlayerCount(); j++) {
-                        if (majorityDecides(server, world) || Configs.kingOfTheHill) { //If king of the hill is false, the majority of the server is what decides whether or not the rain will go away.
-                            worldinfo.setCleanWeatherTime(1000000); //Sets the clear-weather for a million ticks
-                            worldinfo.setRainTime(0);               //Sets the rain-time to 0
-                            worldinfo.setThunderTime(0);            //Sets the thunder-time to 0
-                            worldinfo.setRaining(false);            //Turns off rain
-                            worldinfo.setThundering(false);         //Turns off thunder
-                            LogHelper.info("Rain Blocked!");        //Notifies the console
-                            break;                                  //Breaks the loop
+                        if (majorityDecides(server, world) || (Configs.chaacRainGod && world.playerEntities.get(j).getTags().contains("norain"))) { //If king of the hill is false, the majority of the server is what decides whether or not the rain will go away.
+                            worldinfo.setCleanWeatherTime(LogicHelper.getRainTime());                                   //Sets the clear-weather for a million ticks
+                            worldinfo.setRainTime(0);                                                                   //Sets the rain-time to 0
+                            worldinfo.setThunderTime(0);                                                                //Sets the thunder-time to 0
+                            worldinfo.setRaining(false);                                                                //Turns off rain
+                            worldinfo.setThundering(false);                                                             //Turns off thunder
+                            LogHelper.info("Rain Blocked for " + worldinfo.getCleanWeatherTime() + "!");                //Notifies the console
+                            break;                                                                                      //Breaks the loop
                         }
                     }
                 }
@@ -52,9 +52,9 @@ public class WorldEvents {
             if (world.playerEntities.get(j).getTags().contains("norain")) {
                 EntityPlayer player = world.playerEntities.get(j);
 
-                if (LogicHelper.isPlayerOP((EntityPlayerMP)player))                                                     //INFO: Will always be false as of now.
+                if (LogicHelper.isPlayerOP((EntityPlayerMP)player))
                     count =+ Configs.adminVoteWorth;
-                else if (!LogicHelper.isPlayerOP((EntityPlayerMP)player)) {                                             //INFO: Will always be true as of now.
+                else if (!LogicHelper.isPlayerOP((EntityPlayerMP)player)) {
                     count =+ Configs.playerVoteWorth;
                 }
             }
