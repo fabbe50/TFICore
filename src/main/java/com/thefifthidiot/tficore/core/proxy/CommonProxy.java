@@ -1,13 +1,14 @@
 package com.thefifthidiot.tficore.core.proxy;
 
+import com.thefifthidiot.tficore.init.TFIGamerules;
 import com.thefifthidiot.tficore.core.registry.BlockRegistry;
 import com.thefifthidiot.tficore.core.registry.ItemRegistry;
 import com.thefifthidiot.tficore.core.registry.RecipeRegistry;
 import com.thefifthidiot.tficore.core.registry.SmeltingRegistry;
 
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import com.thefifthidiot.tficore.init.TFICommands;
+import com.thefifthidiot.tficore.init.TFIWorldEvents;
+import net.minecraftforge.fml.common.event.*;
 
 /*	This is the CommonProxy class, it is used for:
  * 
@@ -30,5 +31,14 @@ public class CommonProxy {
     
     public void postInit(FMLPostInitializationEvent event) {
     	
+    }
+
+    public void onServerStarting(FMLServerStartingEvent event) {
+        TFIGamerules.init();
+        TFICommands.init(event);
+    }
+
+    public void onServerStarted(FMLServerStartedEvent event) {
+        TFIWorldEvents.init();
     }
 }

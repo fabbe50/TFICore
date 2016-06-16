@@ -2,11 +2,7 @@ package com.thefifthidiot.tficore.common.blocks.meta;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
-import com.thefifthidiot.tficore.common.creativetabs.TFITab;
 import com.thefifthidiot.tficore.core.interfaces.IMetaBlockName;
-import com.thefifthidiot.tficore.lib.Configs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,16 +11,11 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings("deprecation, unchecked")
 public class MetaCompressedBase extends Block implements IMetaBlockName{
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", MetaCompressedBase.EnumType.class);
 	
@@ -37,7 +28,7 @@ public class MetaCompressedBase extends Block implements IMetaBlockName{
 	protected BlockStateContainer createBlockState() {
 	    return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 	    return this.getDefaultState().withProperty(TYPE, EnumType.byMetadata(meta));
@@ -61,22 +52,24 @@ public class MetaCompressedBase extends Block implements IMetaBlockName{
 	}
 	
 	public enum EnumType implements IStringSerializable {
-	    SINGLE(0, "single"),
-	    DOUBLE(1, "double"),
-	    TRIPLE(2, "triple"),
-	    QUADRUPLE(3, "quadruple"),
-	    QUINTUPLE(4, "quintuple"),
-	    SEXTUPLE(5, "sextuple"),
-	    SEPTUPLE(6, "septuple"),
-	    OCTUPLE(7, "octuple");
+	    SINGLE(0, "single", "9"),
+	    DOUBLE(1, "double", "81"),
+	    TRIPLE(2, "triple", "729"),
+	    QUADRUPLE(3, "quadruple", "6,561"),
+	    QUINTUPLE(4, "quintuple", "59,049"),
+	    SEXTUPLE(5, "sextuple", "531,441"),
+	    SEPTUPLE(6, "septuple", "4,782,969"),
+	    OCTUPLE(7, "octuple", "43,046,721");
 		
 		private static final EnumType[] META_LOOKUP = new EnumType[values().length];
 		private int meta;
 		private String name;
+        private String tooltip;
 		
-		private EnumType(int meta, String name) {
+		private EnumType(int meta, String name, String tooltip) {
 			this.name = name;
 			this.meta = meta;
+            this.tooltip = tooltip;
 		}
 		
 		public String getUnlocalizedName() {
@@ -90,6 +83,10 @@ public class MetaCompressedBase extends Block implements IMetaBlockName{
 		public int getMetadata() {
 			return this.meta;
 		}
+
+        public String getTooltip() {
+            return this.tooltip;
+        }
 
 	    public static EnumType byMetadata(int meta){
 	        if (meta < 0 || meta >= META_LOOKUP.length) {

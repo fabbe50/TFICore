@@ -1,24 +1,9 @@
 package com.thefifthidiot.tficore;
 
-import com.thefifthidiot.tficore.common.blocks.TestBlock;
-import com.thefifthidiot.tficore.core.commands.CommandRainVote;
-import com.thefifthidiot.tficore.core.event.WorldEvents;
 import com.thefifthidiot.tficore.core.proxy.CommonProxy;
 import com.thefifthidiot.tficore.core.reference.Reference;
-import com.thefifthidiot.tficore.core.registry.BlockRegistry;
-import com.thefifthidiot.tficore.core.registry.ItemRegistry;
-import com.thefifthidiot.tficore.init.TFIBlocks;
-import com.thefifthidiot.tficore.lib.Configs;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CommandEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import com.thefifthidiot.tficore.utility.LogHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -44,7 +29,7 @@ public class TFICore
 	 * 	The CommonProxy is set to run on the game server.
 	 * 	The ClientProxy is set to only run on the client side.	
 	 * 	
-	 *	You do it like so:
+	 *	You do this like so:
 	 */
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.COMMON_PROXY)
 	public static CommonProxy proxy;
@@ -60,26 +45,36 @@ public class TFICore
 	 */	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		this.proxy.preInit(event);
+        LogHelper.finfo("Pre-Initializing"); //These log-messages are not required, but it helps keeping the log tidy.
+        this.proxy.preInit(event);
+        LogHelper.finfo("Done");
 	}
 	
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        LogHelper.finfo("Initializing");
     	this.proxy.init(event);
+        LogHelper.finfo("Done");
     }
     
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-    	this.proxy.postInit(event);
+        LogHelper.finfo("Post-Initializing");
+        this.proxy.postInit(event);
+        LogHelper.finfo("Done");
     }
     
     @EventHandler
-    public void onServerStart(FMLServerStartingEvent event) {
-		event.registerServerCommand(new CommandRainVote());
+    public void onServerStarting(FMLServerStartingEvent event) {
+        LogHelper.finfo("Running ServerStarting-event");
+        this.proxy.onServerStarting(event);
+        LogHelper.finfo("Done");
     }
 
     @EventHandler
     public void onServerStarted(FMLServerStartedEvent event) {
-        if(Configs.rainVoting || true){MinecraftForge.EVENT_BUS.register(new WorldEvents());}
+        LogHelper.finfo("Running ServerStarted-event");
+        this.proxy.onServerStarted(event);
+        LogHelper.finfo("Done");
     }
 }

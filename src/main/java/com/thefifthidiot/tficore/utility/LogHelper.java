@@ -18,6 +18,7 @@ public class LogHelper
 	 * 	@func error - An error in the application, possibly recoverable.
 	 * 	@func fatal - A severe error that will prevent the application from continuing.
 	 * 	@func info  - An event for informational purposes.
+	 * 	@func finfo - An event for informational purposes, that overrides the mods config-option.
 	 * 	@func off   - No events will be logged.
 	 * 	@func trace - A fine-grained debug message, typically capturing the flow through the application.
 	 * 	@func warn  - An event that might possible lead to an error.

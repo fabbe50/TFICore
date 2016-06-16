@@ -15,7 +15,7 @@ public class TFIItems {
 		GameRegistry.register(item);
 		ITEMS.add(item);
 		
-		LogHelper.info("Added item: " + item);
+		LogHelper.info("Added item: " + item.getRegistryName());
 		
 		return item;
 	}

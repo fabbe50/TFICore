@@ -40,6 +40,7 @@ public class TFIBlocks {
         }
 
         blocks.add(block);
+        LogHelper.finfo("Added Block: " + block.getRegistryName());
         return block;
     }
     
@@ -49,5 +50,6 @@ public class TFIBlocks {
     	GameRegistry.register(ie.setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getRegistryName().getResourcePath()));
 
     	blocks.add(block);
+        LogHelper.finfo("Added MetaBlock: " + block.getRegistryName());
     }
 }

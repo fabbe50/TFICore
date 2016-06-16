@@ -1,17 +1,13 @@
 package com.thefifthidiot.tficore.utility;
 
-import com.mojang.authlib.yggdrasil.response.MinecraftProfilePropertiesResponse;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.UserListOps;
-import net.minecraft.server.management.UserListOpsEntry;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by fabbe50 on 09/06/2016.
@@ -19,37 +15,35 @@ import java.util.Random;
 public class LogicHelper {
     static UserListOps userListOps;
 
-    public static boolean isPlayerOP (EntityPlayer player) {
-        List<String> ops = null;
+    //Checking if the player is OP on the server.
+    public static boolean isPlayerOP (EntityPlayer player, World world) {
+        AtomicReference<List<String>> ops = new AtomicReference<List<String>>();
+        ops.set(null);
 
-        if (!Minecraft.getMinecraft().isSingleplayer()) {
-            for (int i = 0; i < userListOps.getKeys().length; i++) {
-                ops.add(userListOps.getKeys()[i]);
-            }
+        try {
+            if (!world.getMinecraftServer().getServer().isSinglePlayer()) {
+                for (int i = 0; i < userListOps.getKeys().length; i++) {
+                    ops.get().add(userListOps.getKeys()[i]);
+                }
 
-            if (ops.contains(player.getDisplayNameString())) {
-                return true;
+                return ops.get() != null && ops.get().contains(player.getDisplayNameString());
             } else {
                 return false;
             }
         }
-        else if (Minecraft.getMinecraft().isSingleplayer()) {
-            return false;
-        }
-        else {
+        catch (Exception e) {
+            LogHelper.trace(e);
             return false;
         }
     }
 
+    //Checks for the Majority of online players
     public static boolean serverVote (int count, MinecraftServer server) {
-        if (count > (server.getPlayerList().getCurrentPlayerCount() / 2)) { //Gets if the majority of the players online wants to skip rain.
-            return true;
-        }
-        else {
-            return false;
-        }
+        //Gets if the majority of the players online wants to skip rain.
+        return count > (server.getPlayerList().getCurrentPlayerCount() / 2);
     }
 
+    //Calculates an amount of time it can rain matching vanilla behaviour
     public static int getRainTime () {
         Random random = new Random();
         return random.nextInt(168000) + 12000;

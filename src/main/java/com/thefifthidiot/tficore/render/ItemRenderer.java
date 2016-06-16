@@ -9,6 +9,8 @@ import net.minecraft.item.Item;
 
 public class ItemRenderer {
 	public static void registerItemRenderer() {
+        LogHelper.finfo("Adding Item-renderer");
+
 		registerItem(ItemRegistry.testItem);
 		//registerItem(ItemRegistry.testPickaxe);
 		//registerItem(ItemRegistry.testSword);

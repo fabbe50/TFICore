@@ -12,6 +12,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class CompressedBlock extends MetaCompressedBase{
 	public CompressedBlock(Material material, MapColor blockMapColor, String modID, String name, float hardness, float resistance, @Nullable CreativeTabs tab) {
