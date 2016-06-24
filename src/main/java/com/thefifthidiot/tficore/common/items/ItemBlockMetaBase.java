@@ -26,6 +26,6 @@ public class ItemBlockMetaBase extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return "tile." + super.getRegistryName().getResourcePath() + "." + ((IMetaBlockName)this.block).getSpecialName(stack);
+        return "tile." + super.getRegistryName().getResourceDomain() + ":" + super.getRegistryName().getResourcePath() + "_" + ((IMetaBlockName)this.block).getSpecialName(stack);
     }
 }

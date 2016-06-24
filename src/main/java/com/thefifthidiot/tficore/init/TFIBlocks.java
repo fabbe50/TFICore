@@ -44,10 +44,10 @@ public class TFIBlocks {
         return block;
     }
     
-    public static void registerMetaBlock(int id, ResourceLocation location, Block block) {
-    	Block.REGISTRY.register(id, location, block);
+    public static void registerMetaBlock(ResourceLocation location, Block block) {
+    	Block.REGISTRY.register(0, location, block);
     	ItemBlock ie = new ItemBlockMetaBase(block);
-    	GameRegistry.register(ie.setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getRegistryName().getResourcePath()));
+    	GameRegistry.register(ie.setRegistryName(block.getRegistryName()));
 
     	blocks.add(block);
         LogHelper.finfo("Added MetaBlock: " + block.getRegistryName());
