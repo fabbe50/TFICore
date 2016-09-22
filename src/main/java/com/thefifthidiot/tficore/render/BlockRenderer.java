@@ -12,6 +12,9 @@ public final class BlockRenderer {
 	public static void registerBlockRenderer() {
         LogHelper.finfo("Adding Block-Renderer");
 		registerBlock(BlockRegistry.testBlock);
+        registerBlock(BlockRegistry.fuseRock);
+        registerBlock(BlockRegistry.fuseRockNether);
+        registerBlock(BlockRegistry.fuseRockEnd);
 
         LogHelper.finfo("Adding MetaBlock-Renderer");
 

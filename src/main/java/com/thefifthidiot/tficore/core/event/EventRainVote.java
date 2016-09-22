@@ -29,7 +29,7 @@ public class EventRainVote {
             try {
                 if (worldinfo.getCleanWeatherTime() <= 1000 && server.getPlayerList().getCurrentPlayerCount() > 0) {    //if the weather turns to rain and the there are at least 1 player
                     for (int j = 0; j < server.getPlayerList().getCurrentPlayerCount(); j++) {
-                        if (majorityDecides(server, world) || (Configs.chaacRainGod && world.playerEntities.get(j).getTags().contains("norain"))) { //If chaacRainGod is false, the majority of the server is what decides whether or not the rain will go away.
+                        if ((!Configs.chaacRainGod && majorityDecides(server, world)) || (Configs.chaacRainGod && world.playerEntities.get(j).getTags().contains("norain"))) { //If chaacRainGod is false, the majority of the server is what decides whether or not the rain will go away.
                             worldinfo.setCleanWeatherTime(LogicHelper.getRainTime());                                   //Sets the clear-weather for .5 to 7.5 Minecraft days
                             worldinfo.setRainTime(0);                                                                   //Sets the rain-time to 0
                             worldinfo.setThunderTime(0);                                                                //Sets the thunder-time to 0

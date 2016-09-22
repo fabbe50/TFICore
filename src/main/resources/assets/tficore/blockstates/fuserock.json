@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "explode=true": { "model": "tficore:fuserock" },
+        "explode=false": { "model": "tficore:fuserock" }
+    }
+}

@@ -1,6 +1,7 @@
 package com.thefifthidiot.tficore.init;
 
 import com.thefifthidiot.tficore.core.commands.CommandRainVote;
+import com.thefifthidiot.tficore.core.commands.CommandWorldInfo;
 import com.thefifthidiot.tficore.lib.Configs;
 import com.thefifthidiot.tficore.utility.LogHelper;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,6 +17,6 @@ public class TFICommands {
         if(Configs.rainVoting){event.registerServerCommand(new CommandRainVote());}
 
         //Can't be disabled
-
+        event.registerServerCommand(new CommandWorldInfo());
     }
 }

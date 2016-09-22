@@ -43,17 +43,16 @@ $RECYCLE.BIN/
 .AppleDB
 .AppleDesktop
 Network Trash Folder
-Temporary Items
+#Temporary Items
 .apdisk
-*.properties
-.gradle/2.7/taskArtifacts/cache.properties.lock
+#*.properties
 *.bin
 .settings/org.eclipse.core.resources.prefs
 *.prefs
 .project
 .classpath
-TFICore_Client.launch
-TFICore_Server.launch
+*.launch
+*.launch
 build
 bin
 run
@@ -62,3 +61,5 @@ TFICore.iws
 *.ipr
 TFICore.iml
 out
+*.lock
+.gradle/2.7/taskArtifacts/cache.properties

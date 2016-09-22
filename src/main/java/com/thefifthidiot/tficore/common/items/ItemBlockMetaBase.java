@@ -12,7 +12,7 @@ public class ItemBlockMetaBase extends ItemBlock {
     public ItemBlockMetaBase(Block block) {
         super(block);
         if (!(block instanceof IMetaBlockName)) {
-            throw new IllegalArgumentException(String.format("The given Block %s is not an instance of ISpecialBlockName!", block.getUnlocalizedName()));
+            throw new IllegalArgumentException(String.format("The given Block %s is not an instance of IMetaBlockName!", block.getUnlocalizedName()));
         }
         this.setMaxDamage(0);
         this.setHasSubtypes(true);

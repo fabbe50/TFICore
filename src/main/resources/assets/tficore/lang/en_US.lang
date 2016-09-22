@@ -13,6 +13,8 @@ item.tficore:testItem.name=Testing Item
 #############################################################################
 #Normal Blocks
 tile.tficore:testBlock.name=Testing Block
+tile.tficore:fuserock.name=Fuserock
+tile.tficore:fuserocknether.name=Nether Fuserock
 
 #############################################################################
 #                                Meta Blocks                                #
@@ -48,3 +50,5 @@ tile.potato_compr.octuple.name=Octuple Compressed Potato
 #CreativeTabs
 itemGroup.tficore.blocks=TFICore: Blocks
 itemGroup.tficore.items=TFICore: Items
+#ConfigGUI
+tficore.configgui.title=TFICore Configuration

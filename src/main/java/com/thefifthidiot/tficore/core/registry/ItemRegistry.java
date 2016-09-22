@@ -52,7 +52,7 @@ public class ItemRegistry {
 		//testHoe = TFIItems.registerItem(new TestHoe("testHoe", testTools, null));
 		
 		//Items
-		testItem = TFIItems.registerItem(new TestItem("testItem", null));
+		testItem = TFIItems.registerItem(new TestItem("testItem", null)).setCreativeTab(null);
 	}
 	
 	public static void init() {}; //Makes sure the static field is registered

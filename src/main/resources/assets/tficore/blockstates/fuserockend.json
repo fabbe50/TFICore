@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "explode=true": { "model": "tficore:fuserockend" },
+        "explode=false": { "model": "tficore:fuserockend" }
+    }
+}

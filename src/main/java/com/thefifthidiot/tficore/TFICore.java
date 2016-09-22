@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.*;
  * 	@param version = this is how you tell the game what version of the mod is running.
  */
 
-@Mod(name = Reference.MOD_NAME, modid = Reference.MOD_ID, version = Reference.VERSION)
+@Mod(name = Reference.MOD_NAME, modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY)
 public class TFICore
 {
 	//Creating an instance of your mod is as simple as this:
