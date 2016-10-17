@@ -1,4 +1,5 @@
 [![GitHub release](https://img.shields.io/badge/Latest%20Release-1.1.0--Alpha26-blue.svg)](https://github.com/fabbe50/TFICore/releases)
+[![GitHub release](https://img.shields.io/badge/Minecraft%20Version-1.10.2-green.svg)](https://github.com/fabbe50/TFICore/releases)
 [![GitHub release](https://img.shields.io/badge/Recommended%20Release-NaN-red.svg)](https://github.com/fabbe50/TFICore/releases)
 [![GitHub release](https://img.shields.io/badge/License-GNU--GPL--3.0-yellow.svg)](https://github.com/fabbe50/TFICore/blob/master/LICENSE)
 
