@@ -5,6 +5,9 @@ import com.thefifthidiot.tficore.core.registry.*;
 import com.thefifthidiot.tficore.init.TFIGamerules;
 
 import com.thefifthidiot.tficore.init.TFICommands;
+import com.thefifthidiot.tficore.lib.Configs;
+import com.thefifthidiot.tficore.lib.SpecialDropStorage;
+import com.thefifthidiot.tficore.utility.Debugger;
 import net.minecraftforge.fml.common.event.*;
 
 /*	This is the CommonProxy class, it is used for:
@@ -18,9 +21,11 @@ import net.minecraftforge.fml.common.event.*;
  */
 public class CommonProxy {
 	public void preInit(FMLPreInitializationEvent event) {
+        Configs.init();
         ConfigurationHandler.load(event);
 		BlockRegistry.init();	//Initialize Blocks
 		ItemRegistry.init();	//Initialize Items
+        SpecialDropStorage.init();
 	}
 	
     public void init(FMLInitializationEvent event) {
@@ -28,9 +33,11 @@ public class CommonProxy {
     	SmeltingRegistry.registerSmelting();
         OregenRegistry.init();
         EventRegistry.init();
+        SpecialDropRegistry.registerSpecialDrops();
     }
     
     public void postInit(FMLPostInitializationEvent event) {
+        Debugger.debug();
         EventRegistry.postInit();
     }
 

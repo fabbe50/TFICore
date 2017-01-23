@@ -1,6 +1,7 @@
 package com.thefifthidiot.tficore.core.registry;
 
 import com.thefifthidiot.tficore.common.world.gen.GenWorldVeins;
+import com.thefifthidiot.tficore.lib.Configs;
 import net.minecraft.init.Blocks;
 
 import java.util.Random;
@@ -16,14 +17,14 @@ public class OregenRegistry {
     }
 
     private static void addOverworldOres() {
-        GenWorldVeins.addToOverworld(BlockRegistry.fuseRock, 2, 8, 4, 5, 68, Blocks.STONE);
+        if (!Configs.disableFuseRock) {GenWorldVeins.addToOverworld(BlockRegistry.fuseRock, 2, 8, 4, 5, 68, Blocks.STONE);}
     }
 
     private static void addNetherOres() {
-        GenWorldVeins.addToNether(BlockRegistry.fuseRockNether, 6, 14, 6, 10, 120, Blocks.NETHERRACK);
+        if (!Configs.disableFuseRock) {GenWorldVeins.addToNether(BlockRegistry.fuseRockNether, 6, 14, 6, 10, 120, Blocks.NETHERRACK);}
     }
 
     private static void addEndOres() {
-        GenWorldVeins.addToEnd(BlockRegistry.fuseRockEnd, 3, 11, 8, 10, 120, Blocks.END_STONE);
+        if (!Configs.disableFuseRock) {GenWorldVeins.addToEnd(BlockRegistry.fuseRockEnd, 3, 11, 8, 10, 120, Blocks.END_STONE);}
     }
 }

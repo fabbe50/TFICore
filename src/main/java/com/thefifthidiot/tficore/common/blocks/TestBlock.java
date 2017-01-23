@@ -34,8 +34,4 @@ public class TestBlock extends BlockBase {
         return false;
     }
 
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(this);
-    }
 }

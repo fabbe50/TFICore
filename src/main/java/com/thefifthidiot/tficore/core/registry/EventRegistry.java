@@ -1,6 +1,7 @@
 package com.thefifthidiot.tficore.core.registry;
 
 import com.thefifthidiot.tficore.common.world.gen.GenWorldVeins;
+import com.thefifthidiot.tficore.core.event.EventCloudRenderer;
 import com.thefifthidiot.tficore.core.event.EventRainOverride;
 import com.thefifthidiot.tficore.core.event.EventRainVote;
 import com.thefifthidiot.tficore.core.handler.ConfigurationHandler;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class EventRegistry {
     public static void init() {
         GameRegistry.registerWorldGenerator(new GenWorldVeins(), 0);
+        //MinecraftForge.EVENT_BUS.register(EventCloudRenderer.class);
     }
 
     public static void postInit() {
