@@ -2,7 +2,9 @@ package com.thefifthidiot.tficore.init;
 
 import javax.annotation.Nullable;
 
+import com.thefifthidiot.tficore.common.blocks.base.BlockBase;
 import com.thefifthidiot.tficore.common.items.ItemBlockMetaBase;
+import com.thefifthidiot.tficore.core.registry.SpecialDropRegistry;
 import com.thefifthidiot.tficore.utility.LogHelper;
 
 import java.util.HashSet;
@@ -10,6 +12,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;

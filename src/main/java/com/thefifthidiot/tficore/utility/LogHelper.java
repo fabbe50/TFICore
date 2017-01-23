@@ -32,7 +32,7 @@ public class LogHelper
     public static void debug(Object object) {log(Level.DEBUG, object);}
     public static void error(Object object) {log(Level.ERROR, object);}
     public static void fatal(Object object) {log(Level.FATAL, object);}
-    public static void info(Object object) {if (Configs.infoLogging){log(Level.INFO, object);}}
+    public static void info(Object object) {if (Configs.infoLogging) {log(Level.INFO, object);}}
     public static void finfo(Object object) {log(Level.INFO, object);}
     public static void off(Object object) {log(Level.OFF, object);}
     public static void trace(Object object) {log(Level.TRACE, object);}

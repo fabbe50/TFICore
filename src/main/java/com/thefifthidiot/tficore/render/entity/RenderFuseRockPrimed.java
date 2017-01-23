@@ -15,11 +15,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderFuseRockPrimed extends Render<EntityFuseRockPrimed> {
-    public RenderFuseRockPrimed(RenderManager renderManagerIn) {
-        super(renderManagerIn);
+    public RenderFuseRockPrimed(RenderManager renderManager) {
+        super(renderManager);
         this.shadowSize = 0.5F;
     }
 
+    @Override
     public void doRender(EntityFuseRockPrimed entity, double x, double y, double z, float entityYaw, float partialTicks) {
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
         GlStateManager.pushMatrix();

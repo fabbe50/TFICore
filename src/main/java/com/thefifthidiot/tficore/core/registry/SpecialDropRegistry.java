@@ -2,6 +2,7 @@ package com.thefifthidiot.tficore.core.registry;
 
 import com.thefifthidiot.tficore.common.blocks.base.BlockBase;
 import com.thefifthidiot.tficore.lib.Configs;
+import com.thefifthidiot.tficore.lib.SpecialDropStorage;
 import com.thefifthidiot.tficore.utility.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -16,8 +17,17 @@ import java.util.List;
 import java.util.Locale;
 
 public class SpecialDropRegistry {
+    public static void registerSpecialDrop(Item item, Block block) {
+        registerSpecialDrop(block, item);
+    }
+
+    public static void registerSpecialDrop(Block block, Item item) {
+        SpecialDropStorage.specialDropBlock.add(block);
+        SpecialDropStorage.specialDropItem.add(item);
+    }
+
 	public static void registerSpecialDrops() {
-		//BlockBase.registerSpecialDrop(ItemRegistry.testItem, BlockRegistry.testBlock);
+		registerSpecialDrop(ItemRegistry.testItem, BlockRegistry.testBlock);
 
 
         //Experimental Ore-override
@@ -43,7 +53,7 @@ public class SpecialDropRegistry {
     private static void replaceOre(String oreDictEntry) {
         List<ItemStack> ores = getOres2(oreDictEntry);
         for (int i = 0; i < ores.size(); i++) {
-            BlockBase.registerSpecialDrop(getSetItem(ores), Block.getBlockFromItem(ores.get(i).getItem()));
+            registerSpecialDrop(getSetItem(ores), Block.getBlockFromItem(ores.get(i).getItem()));
         }
     }
 

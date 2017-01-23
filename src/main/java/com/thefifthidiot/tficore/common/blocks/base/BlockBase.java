@@ -10,6 +10,7 @@ import com.thefifthidiot.tficore.core.registry.BlockRegistry;
 import com.thefifthidiot.tficore.core.registry.ItemRegistry;
 import com.thefifthidiot.tficore.lib.Configs;
 
+import com.thefifthidiot.tficore.lib.SpecialDropStorage;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -29,8 +30,6 @@ public class BlockBase extends Block {
 	public static float hardness = 1f;
 	public static float resistance = 1f;
 	public static CreativeTabs tab = null;
-	public static List<Block> specialDropBlock;
-	public static List<Item> specialDropItem;
 	
 	public BlockBase(Material material, MapColor mapColor, String blockName, float hardness, float resistance, @Nullable CreativeTabs tab) {
         super(material, mapColor);
@@ -60,12 +59,7 @@ public class BlockBase extends Block {
         block.setUnlocalizedName(block.getRegistryName().toString());
     }
 	
-	public static void registerSpecialDrop(Item item, Block block) {
-		specialDropBlock.add(block);
-		specialDropItem.add(item);
-	}
-	
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return specialDropBlock.contains(this) ? specialDropItem.get(specialDropBlock.indexOf(this)) : Item.getItemFromBlock(this);
+        return SpecialDropStorage.specialDropBlock.contains(state.getBlock()) ? SpecialDropStorage.specialDropItem.get(SpecialDropStorage.specialDropBlock.indexOf(state.getBlock())) : Item.getItemFromBlock(state.getBlock());
 	}
 }
