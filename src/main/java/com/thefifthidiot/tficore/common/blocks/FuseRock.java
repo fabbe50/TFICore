@@ -2,7 +2,7 @@ package com.thefifthidiot.tficore.common.blocks;
 
 import com.thefifthidiot.tficore.common.blocks.base.BlockBase;
 import com.thefifthidiot.tficore.common.entity.EntityFuseRockPrimed;
-import com.thefifthidiot.tficore.utility.LogHelper;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -30,8 +30,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-
 /**
  * Created by fabbe50 on 25/08/2016.
  */
@@ -55,7 +53,7 @@ public class FuseRock extends BlockBase {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         if (worldIn.isBlockPowered(pos)) {
             this.trigger(worldIn, pos, state.withProperty(EXPLODE, true));
             worldIn.setBlockToAir(pos);
@@ -67,7 +65,7 @@ public class FuseRock extends BlockBase {
         if (!worldIn.isRemote) {
             EntityFuseRockPrimed entityfuserockprimed = new EntityFuseRockPrimed(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), explosionIn.getExplosivePlacedBy());
             entityfuserockprimed.setFuse((short)(worldIn.rand.nextInt(entityfuserockprimed.getFuse() / 4) + entityfuserockprimed.getFuse() / 8));
-            worldIn.spawnEntityInWorld(entityfuserockprimed);
+            worldIn.spawnEntity(entityfuserockprimed);
         }
     }
 
@@ -78,7 +76,7 @@ public class FuseRock extends BlockBase {
         }
         else if (this.canSilkHarvest(worldIn, pos, state, player) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0) {
             java.util.List<ItemStack> items = new java.util.ArrayList<ItemStack>();
-            ItemStack itemstack = this.createStackedBlock(state);
+            ItemStack itemstack = this.getSilkTouchDrop(state);
 
             if (itemstack != null) {
                 items.add(itemstack);
@@ -124,14 +122,16 @@ public class FuseRock extends BlockBase {
         if (!worldIn.isRemote) {
             if ((state.getValue(EXPLODE))) {
                 EntityFuseRockPrimed entityfuserockprimed = new EntityFuseRockPrimed(worldIn, (double)((float)pos.getX() + 0.5F), (double)pos.getY(), (double)((float)pos.getZ() + 0.5F), igniter);
-                worldIn.spawnEntityInWorld(entityfuserockprimed);
+                worldIn.spawnEntity(entityfuserockprimed);
                 worldIn.playSound((EntityPlayer)null, entityfuserockprimed.posX, entityfuserockprimed.posY, entityfuserockprimed.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        ItemStack heldItem = playerIn.getHeldItem(hand);
+
         if (heldItem != null && (heldItem.getItem() == Items.FLINT_AND_STEEL || heldItem.getItem() == Items.FIRE_CHARGE)) {
             this.explode(worldIn, pos, state.withProperty(EXPLODE, true), playerIn);
             worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 11);
@@ -140,13 +140,13 @@ public class FuseRock extends BlockBase {
                 heldItem.damageItem(1, playerIn);
             }
             else if (!playerIn.capabilities.isCreativeMode) {
-                --heldItem.stackSize;
+                heldItem.setCount(heldItem.getCount() - 1);
             }
 
             return true;
         }
         else {
-            return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+            return super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
         }
     }
 

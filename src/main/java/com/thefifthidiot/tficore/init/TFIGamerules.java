@@ -1,6 +1,6 @@
 package com.thefifthidiot.tficore.init;
 
-import com.thefifthidiot.tficore.utility.LogHelper;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 import net.minecraft.world.GameRules;
 
 /**

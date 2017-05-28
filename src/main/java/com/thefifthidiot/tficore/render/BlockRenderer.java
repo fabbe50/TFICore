@@ -1,7 +1,7 @@
 package com.thefifthidiot.tficore.render;
 
 import com.thefifthidiot.tficore.core.registry.BlockRegistry;
-import com.thefifthidiot.tficore.utility.LogHelper;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;

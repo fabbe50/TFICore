@@ -1,14 +1,10 @@
 package com.thefifthidiot.tficore.core.event;
 
-import com.thefifthidiot.tficore.core.handler.CloudHandler;
 import com.thefifthidiot.tficore.core.handler.CloudHandlerFix;
 import com.thefifthidiot.tficore.lib.Configs;
-import com.thefifthidiot.tficore.utility.LogHelper;
-import net.minecraft.world.World;
-import net.minecraftforge.client.IRenderHandler;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

@@ -1,12 +1,10 @@
 package com.thefifthidiot.tficore.core.event;
 
-import com.thefifthidiot.tficore.TFICore;
 import com.thefifthidiot.tficore.lib.Configs;
 import com.thefifthidiot.tficore.lib.GameInfo;
-import com.thefifthidiot.tficore.utility.LogHelper;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 
-import com.thefifthidiot.tficore.utility.LogicHelper;
-import net.minecraft.client.Minecraft;
+import com.thefifthidiot.tficore.utility.helper.LogicHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
@@ -24,7 +22,7 @@ public class EventRainVote {
 
 		if (!world.isRemote) {
 			WorldInfo worldinfo = GameInfo.worldInfo;
-            String[] players = server.getPlayerList().getAllUsernames();
+            String[] players = server.getPlayerList().getOnlinePlayerNames();
 
             try {
                 if (worldinfo.getCleanWeatherTime() <= 1000 && server.getPlayerList().getCurrentPlayerCount() > 0) {    //if the weather turns to rain and the there are at least 1 player

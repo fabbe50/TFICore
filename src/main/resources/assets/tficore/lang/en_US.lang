@@ -1,7 +1,7 @@
 #############################################################################
 #                                  Items                                    #
 #############################################################################
-item.tficore:testItem.name=Testing Item
+item.tficore:testitem.name=Testing Item
 
 #############################################################################
 #                                Meta Items                                 #
@@ -12,22 +12,14 @@ item.tficore:testItem.name=Testing Item
 #                                  Blocks                                   #
 #############################################################################
 #Normal Blocks
-tile.tficore:testBlock.name=Testing Block
+tile.tficore:testblock.name=Testing Block
 tile.tficore:fuserock.name=Fuserock
 tile.tficore:fuserocknether.name=Nether Fuserock
+tile.tficore:fuserockend.name=End Fuserock
 
 #############################################################################
 #                                Meta Blocks                                #
 #############################################################################
-#Compressed Potato
-tile.potato_compr.single.name=Single Compressed Potato
-tile.potato_compr.double.name=Double Compressed Potato
-tile.potato_compr.triple.name=Triple Compressed Potato
-tile.potato_compr.quadruple.name=Quadruple Compressed Potato
-tile.potato_compr.quintuple.name=Quintuple Compressed Potato
-tile.potato_compr.sextuple.name=Sextuple Compressed Potato
-tile.potato_compr.septuple.name=Septuple Compressed Potato
-tile.potato_compr.octuple.name=Octuple Compressed Potato
 
 #############################################################################
 #                                   Mobs                                    #

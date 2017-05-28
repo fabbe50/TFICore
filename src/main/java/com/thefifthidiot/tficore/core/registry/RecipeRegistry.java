@@ -1,9 +1,6 @@
 package com.thefifthidiot.tficore.core.registry;
 
-import com.thefifthidiot.tficore.utility.LogHelper;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 
 public class RecipeRegistry {
 	/*

@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.thefifthidiot.tficore.core.gui.GUIFactory;
 import com.thefifthidiot.tficore.core.reference.Reference;
 import com.thefifthidiot.tficore.lib.Configs;
-import com.thefifthidiot.tficore.utility.LogHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;

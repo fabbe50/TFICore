@@ -1,7 +1,7 @@
 package com.thefifthidiot.tficore.core.commands;
 
 import com.thefifthidiot.tficore.lib.Configs;
-import com.thefifthidiot.tficore.utility.LogHelper;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -24,12 +24,12 @@ public class CommandRainVote extends CommandBase implements IEntityLivingData {
     ITextComponent message;
 
     @Override
-    public String getCommandName() {
+    public String getName() {
         return "wantrain";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return "< true | false >";
     }
 
@@ -44,7 +44,7 @@ public class CommandRainVote extends CommandBase implements IEntityLivingData {
             return true;
         }
         else{
-            return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
+            return sender.canUseCommand(this.getRequiredPermissionLevel(), this.getName());
         }
     }
 
@@ -55,7 +55,7 @@ public class CommandRainVote extends CommandBase implements IEntityLivingData {
     }
 
     @Override
-    public List getCommandAliases() {
+    public List<String> getAliases() {
         return aliases;
     }
 
@@ -90,15 +90,15 @@ public class CommandRainVote extends CommandBase implements IEntityLivingData {
 
     private void addTag(Entity player) {
         player.addTag("norain");
-        if (Configs.chaacRainGod) {player.addChatMessage(new TextComponentString("You're now a rain stopping god!"));}
-        else {player.addChatMessage(new TextComponentString("You're now voting against rain."));}
+        if (Configs.chaacRainGod) {player.sendMessage(new TextComponentString("You're now a rain stopping god!"));}
+        else {player.sendMessage(new TextComponentString("You're now voting against rain."));}
         LogHelper.info("Added tag \"norain\" to player: " + player.getDisplayName().getUnformattedText());
     }
 
     private void removeTag(Entity player) {
         player.removeTag("norain");
-        if (Configs.chaacRainGod) {player.addChatMessage(new TextComponentString("The stopping of rain is no longer in your control!"));}
-        else {player.addChatMessage(new TextComponentString("You're no longer voting against rain."));}
+        if (Configs.chaacRainGod) {player.sendMessage(new TextComponentString("The stopping of rain is no longer in your control!"));}
+        else {player.sendMessage(new TextComponentString("You're no longer voting against rain."));}
         LogHelper.info("Removed tag \"norain\" from player: " + player.getDisplayName().getUnformattedText());
     }
 }

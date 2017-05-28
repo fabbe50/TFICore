@@ -1,4 +1,4 @@
-package com.thefifthidiot.tficore.utility;
+package com.thefifthidiot.tficore.utility.helper;
 
 import com.thefifthidiot.tficore.core.reference.Reference;
 import com.thefifthidiot.tficore.lib.Configs;

@@ -1,5 +1,6 @@
-package com.thefifthidiot.tficore.utility;
+package com.thefifthidiot.tficore.utility.helper;
 
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.UserListOps;

@@ -3,8 +3,7 @@ package com.thefifthidiot.tficore.init;
 import com.thefifthidiot.tficore.core.commands.CommandRainVote;
 import com.thefifthidiot.tficore.core.commands.CommandWorldInfo;
 import com.thefifthidiot.tficore.lib.Configs;
-import com.thefifthidiot.tficore.utility.LogHelper;
-import net.minecraftforge.common.MinecraftForge;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /**

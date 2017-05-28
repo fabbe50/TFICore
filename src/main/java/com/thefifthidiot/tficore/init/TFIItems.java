@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.thefifthidiot.tficore.utility.IVariant;
-import com.thefifthidiot.tficore.utility.LogHelper;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

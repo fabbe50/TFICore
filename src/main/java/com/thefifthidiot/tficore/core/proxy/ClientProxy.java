@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -52,7 +53,7 @@ public class ClientProxy extends CommonProxy {
 
     @SubscribeEvent
     public void worldChange(WorldEvent.Load event) {
-        if (Configs.isDimensionAllowed(event.getWorld().provider.getDimension())) {
+        if (Configs.isDimensionAllowed(event.getWorld().provider.getDimension()) && !Loader.isModLoaded("optifine")) {
             event.getWorld().provider.setCloudRenderer(CloudHandlerFix.INSTANCE);
         }
     }

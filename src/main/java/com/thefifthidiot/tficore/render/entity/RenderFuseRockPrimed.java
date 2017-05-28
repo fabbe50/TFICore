@@ -20,7 +20,6 @@ public class RenderFuseRockPrimed extends Render<EntityFuseRockPrimed> {
         this.shadowSize = 0.5F;
     }
 
-    @Override
     public void doRender(EntityFuseRockPrimed entity, double x, double y, double z, float entityYaw, float partialTicks) {
         BlockRendererDispatcher blockrendererdispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
         GlStateManager.pushMatrix();
@@ -28,7 +27,7 @@ public class RenderFuseRockPrimed extends Render<EntityFuseRockPrimed> {
 
         if ((float)entity.getFuse() - partialTicks + 1.0F < 10.0F) {
             float f = 1.0F - ((float)entity.getFuse() - partialTicks + 1.0F) / 10.0F;
-            f = MathHelper.clamp_float(f, 0.0F, 1.0F);
+            f = MathHelper.clamp(f, 0.0F, 1.0F);
             f = f * f;
             f = f * f;
             float f1 = 1.0F + f * 0.3F;
@@ -70,7 +69,6 @@ public class RenderFuseRockPrimed extends Render<EntityFuseRockPrimed> {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    @Override
     protected ResourceLocation getEntityTexture(EntityFuseRockPrimed entity) {
         return TextureMap.LOCATION_BLOCKS_TEXTURE;
     }

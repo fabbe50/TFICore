@@ -1,9 +1,7 @@
 package com.thefifthidiot.tficore.core.registry;
 
-import com.thefifthidiot.tficore.common.blocks.base.BlockBase;
 import com.thefifthidiot.tficore.lib.Configs;
 import com.thefifthidiot.tficore.lib.SpecialDropStorage;
-import com.thefifthidiot.tficore.utility.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

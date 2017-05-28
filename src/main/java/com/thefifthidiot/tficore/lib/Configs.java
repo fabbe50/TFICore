@@ -1,7 +1,5 @@
 package com.thefifthidiot.tficore.lib;
 
-import com.thefifthidiot.tficore.utility.LogHelper;
-
 import java.util.ArrayList;
 import java.util.List;
 

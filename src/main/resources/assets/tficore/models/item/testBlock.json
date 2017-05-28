@@ -1,5 +1,5 @@
 {
-    "parent": "tficore:block/testBlock",
+    "parent": "tficore:block/testblock",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

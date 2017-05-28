@@ -66,8 +66,8 @@ public class CloudHandler extends IRenderHandler {
                 double d2 = (double)((float)this.cloudTick + partTicks);
                 double d0 = minecraft.getRenderViewEntity().prevPosX + (minecraft.getRenderViewEntity().posX - minecraft.getRenderViewEntity().prevPosX) * (double)partTicks + d2 * 0.029999999329447746D;
                 double d1 = minecraft.getRenderViewEntity().prevPosZ + (minecraft.getRenderViewEntity().posZ - minecraft.getRenderViewEntity().prevPosZ) * (double)partTicks;
-                int k = MathHelper.floor_double(d0 / 2048.0D);
-                int l = MathHelper.floor_double(d1 / 2048.0D);
+                int k = MathHelper.floor(d0 / 2048.0D);
+                int l = MathHelper.floor(d1 / 2048.0D);
                 d0 = d0 - (double)(k * 2048);
                 d1 = d1 - (double)(l * 2048);
                 float f7 = getCloudHeight() - f + 0.33F;
@@ -101,8 +101,8 @@ public class CloudHandler extends IRenderHandler {
         double d1 = (minecraft.getRenderViewEntity().prevPosX + (minecraft.getRenderViewEntity().posX - minecraft.getRenderViewEntity().prevPosX) * (double)partTicks + d0 * 0.029999999329447746D) / 12.0D;
         double d2 = (minecraft.getRenderViewEntity().prevPosZ + (minecraft.getRenderViewEntity().posZ - minecraft.getRenderViewEntity().prevPosZ) * (double)partTicks) / 12.0D + 0.33000001311302185D;
         float f3 = getCloudHeight() - f + 0.33F;
-        int i = MathHelper.floor_double(d1 / 2048.0D);
-        int j = MathHelper.floor_double(d2 / 2048.0D);
+        int i = MathHelper.floor(d1 / 2048.0D);
+        int j = MathHelper.floor(d2 / 2048.0D);
         d1 = d1 - (double)(i * 2048);
         d2 = d2 - (double)(j * 2048);
         minecraft.renderEngine.bindTexture(CLOUD_TEXTURE);
@@ -130,10 +130,10 @@ public class CloudHandler extends IRenderHandler {
         float f14 = f5 * 0.8F;
         float f15 = f6 * 0.8F;
         float f16 = 0.00390625F;
-        float f17 = (float)MathHelper.floor_double(d1) * 0.00390625F;
-        float f18 = (float)MathHelper.floor_double(d2) * 0.00390625F;
-        float f19 = (float)(d1 - (double)MathHelper.floor_double(d1));
-        float f20 = (float)(d2 - (double)MathHelper.floor_double(d2));
+        float f17 = (float)MathHelper.floor(d1) * 0.00390625F;
+        float f18 = (float)MathHelper.floor(d2) * 0.00390625F;
+        float f19 = (float)(d1 - (double)MathHelper.floor(d1));
+        float f20 = (float)(d2 - (double)MathHelper.floor(d2));
         int k = 8;
         int l = 4;
         float f21 = 9.765625E-4F;

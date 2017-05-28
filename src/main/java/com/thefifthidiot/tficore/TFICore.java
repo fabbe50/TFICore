@@ -3,7 +3,7 @@ package com.thefifthidiot.tficore;
 import com.thefifthidiot.tficore.core.proxy.CommonProxy;
 import com.thefifthidiot.tficore.core.reference.Reference;
 
-import com.thefifthidiot.tficore.utility.LogHelper;
+import com.thefifthidiot.tficore.utility.helper.LogHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.event.*;
  * 	@param version = this is how you tell the game what version of the mod is running.
  */
 
-@Mod(name = Reference.MOD_NAME, modid = Reference.MOD_ID, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY)
+@Mod(name = Reference.MOD_NAME, modid = Reference.MOD_ID, version = Reference.VERSION, acceptedMinecraftVersions = "[1.10.*, 1.11]", guiFactory = Reference.GUI_FACTORY)
 public class TFICore
 {
 	//Creating an instance of your mod is as simple as this:

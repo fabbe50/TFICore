@@ -4,6 +4,7 @@ import com.thefifthidiot.tficore.common.world.gen.GenWorldVeins;
 import com.thefifthidiot.tficore.core.event.EventCloudRenderer;
 import com.thefifthidiot.tficore.core.event.EventRainOverride;
 import com.thefifthidiot.tficore.core.event.EventRainVote;
+import com.thefifthidiot.tficore.core.handler.ChatHandler;
 import com.thefifthidiot.tficore.core.handler.ConfigurationHandler;
 import com.thefifthidiot.tficore.lib.Configs;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,5 +26,6 @@ public class EventRegistry {
     public static void onServerStarted() {
         if(Configs.rainVoting){MinecraftForge.EVENT_BUS.register(new EventRainVote());}
         MinecraftForge.EVENT_BUS.register(new EventRainOverride());
+        MinecraftForge.EVENT_BUS.register(new ChatHandler());
     }
 }
