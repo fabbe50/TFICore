@@ -24,7 +24,7 @@ public class EventRainVote {
 
 		if (!world.isRemote) {
 			WorldInfo worldinfo = GameInfo.worldInfo;
-            String[] players = server.getPlayerList().getAllUsernames();
+            String[] players = server.getPlayerList().getOnlinePlayerNames();
 
             try {
                 if (worldinfo.getCleanWeatherTime() <= 1000 && server.getPlayerList().getCurrentPlayerCount() > 0) {    //if the weather turns to rain and the there are at least 1 player

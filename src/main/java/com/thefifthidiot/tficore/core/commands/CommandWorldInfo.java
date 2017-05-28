@@ -23,13 +23,13 @@ public class CommandWorldInfo extends CommandBase {
     List<String> aliases = new ArrayList<String>();
 
     @Override
-    public String getCommandName() {
+    public String getName() {
         addAliases();
         return "worldinfo";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
+    public String getUsage(ICommandSender sender) {
         return "[ all | spawn | day | entity | seed | worldtype | difficulty | player | worldborder ]";
     }
 
@@ -44,7 +44,7 @@ public class CommandWorldInfo extends CommandBase {
             return true;
         }
         else{
-            return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
+            return sender.canUseCommand(this.getRequiredPermissionLevel(), this.getName());
         }
     }
 
@@ -53,7 +53,7 @@ public class CommandWorldInfo extends CommandBase {
     }
 
     @Override
-    public List getCommandAliases() {
+    public List getAliases() {
         return aliases;
     }
 
@@ -65,59 +65,59 @@ public class CommandWorldInfo extends CommandBase {
         if (player instanceof EntityPlayer) {
             if (!world.isRemote) {
                 if (args[0].equalsIgnoreCase("all")) {
-                    player.addChatMessage(new TextComponentString("World Spawn: " + getSpawn(world)));
-                    player.addChatMessage(new TextComponentString("Day: " + getDay(world)));
-                    player.addChatMessage(new TextComponentString("Time: " + world.getWorldTime()));
-                    player.addChatMessage(new TextComponentString("Living Entities: " + world.countEntities(EnumCreatureType.CREATURE, false)));
-                    player.addChatMessage(new TextComponentString("All Entities: " + countEntities(world)));
-                    player.addChatMessage(new TextComponentString("Seed: " + world.getSeed()));
-                    player.addChatMessage(new TextComponentString("World Type: " + world.getWorldType().getWorldTypeName()));
-                    player.addChatMessage(new TextComponentString("Difficulty: " + world.getDifficulty().name()));
+                    player.sendMessage(new TextComponentString("World Spawn: " + getSpawn(world)));
+                    player.sendMessage(new TextComponentString("Day: " + getDay(world)));
+                    player.sendMessage(new TextComponentString("Time: " + world.getWorldTime()));
+                    player.sendMessage(new TextComponentString("Living Entities: " + world.countEntities(EnumCreatureType.CREATURE, false)));
+                    player.sendMessage(new TextComponentString("All Entities: " + countEntities(world)));
+                    player.sendMessage(new TextComponentString("Seed: " + world.getSeed()));
+                    player.sendMessage(new TextComponentString("World Type: " + world.getWorldType().getName()));
+                    player.sendMessage(new TextComponentString("Difficulty: " + world.getDifficulty().name()));
                 }
                 else if (args[0].equalsIgnoreCase("spawn")) {
-                    player.addChatMessage(new TextComponentString("World Spawn: " + getSpawn(world)));
+                    player.sendMessage(new TextComponentString("World Spawn: " + getSpawn(world)));
                 }
                 else if (args[0].equalsIgnoreCase("day") || args[0].equalsIgnoreCase("time")) {
-                    player.addChatMessage(new TextComponentString("Day: " + getDay(world)));
-                    player.addChatMessage(new TextComponentString("Time: " + world.getWorldTime()));
+                    player.sendMessage(new TextComponentString("Day: " + getDay(world)));
+                    player.sendMessage(new TextComponentString("Time: " + world.getWorldTime()));
                 }
                 else if (args[0].equalsIgnoreCase("entity")) {
-                    player.addChatMessage(new TextComponentString("Living Entities: " + world.countEntities(EnumCreatureType.CREATURE, false)));
-                    player.addChatMessage(new TextComponentString("All Entities: " + countEntities(world)));
+                    player.sendMessage(new TextComponentString("Living Entities: " + world.countEntities(EnumCreatureType.CREATURE, false)));
+                    player.sendMessage(new TextComponentString("All Entities: " + countEntities(world)));
                 }
                 else if (args[0].equalsIgnoreCase("seed")) {
-                    player.addChatMessage(new TextComponentString("Seed: " + world.getSeed()));
+                    player.sendMessage(new TextComponentString("Seed: " + world.getSeed()));
                 }
                 else if (args[0].equalsIgnoreCase("worldtype")) {
-                    player.addChatMessage(new TextComponentString("World Type: " + world.getWorldType()));
+                    player.sendMessage(new TextComponentString("World Type: " + world.getWorldType()));
                 }
                 else if (args[0].equalsIgnoreCase("difficulty")) {
-                    player.addChatMessage(new TextComponentString("Difficulty: " + world.getDifficulty()));
+                    player.sendMessage(new TextComponentString("Difficulty: " + world.getDifficulty()));
                 }
                 else if (args[0].equalsIgnoreCase("player")) {
                     ItemStack main = ((EntityPlayer) player).getHeldItem(EnumHand.MAIN_HAND);
                     ItemStack off = ((EntityPlayer) player).getHeldItem(EnumHand.OFF_HAND);
                     BlockPos bedLocation = ((EntityPlayer) player).getBedLocation();
-                    player.addChatMessage(new TextComponentString("Player Name: " + ((EntityPlayer) player).getDisplayNameString()));
-                    player.addChatMessage(new TextComponentString("Creative Mode: " + ((EntityPlayer) player).capabilities.isCreativeMode));
-                    player.addChatMessage(new TextComponentString("Items in Hands: "));
-                        player.addChatMessage(new TextComponentString("    [Main: " + (main == null ? "Empty" : main.getDisplayName()) + "]"));
-                        player.addChatMessage(new TextComponentString("    [Off: " + (off == null ? "Empty" : off.getDisplayName()) + "]"));
-                    player.addChatMessage(new TextComponentString("Tags Applied: " + player.getTags()));
-                    player.addChatMessage(new TextComponentString("Experience: " + ((EntityPlayer) player).experienceTotal));
-                    player.addChatMessage(new TextComponentString("Bed Location: " + (bedLocation == null ? player.getDisplayName().getUnformattedText() + " not bound to bed." : "[X: " + bedLocation.getX() + ", Y: " + bedLocation.getY() + ", Z: " + bedLocation.getZ() + "]")));
-                    player.addChatMessage(new TextComponentString("Team: " + (player.getTeam() == null ? player.getDisplayName().getUnformattedText() + " is not on a team." : player.getTeam())));
+                    player.sendMessage(new TextComponentString("Player Name: " + ((EntityPlayer) player).getDisplayNameString()));
+                    player.sendMessage(new TextComponentString("Creative Mode: " + ((EntityPlayer) player).capabilities.isCreativeMode));
+                    player.sendMessage(new TextComponentString("Items in Hands: "));
+                        player.sendMessage(new TextComponentString("    [Main: " + (main == null ? "Empty" : main.getDisplayName()) + "]"));
+                        player.sendMessage(new TextComponentString("    [Off: " + (off == null ? "Empty" : off.getDisplayName()) + "]"));
+                    player.sendMessage(new TextComponentString("Tags Applied: " + player.getTags()));
+                    player.sendMessage(new TextComponentString("Experience: " + ((EntityPlayer) player).experienceTotal));
+                    player.sendMessage(new TextComponentString("Bed Location: " + (bedLocation == null ? player.getDisplayName().getUnformattedText() + " not bound to bed." : "[X: " + bedLocation.getX() + ", Y: " + bedLocation.getY() + ", Z: " + bedLocation.getZ() + "]")));
+                    player.sendMessage(new TextComponentString("Team: " + (player.getTeam() == null ? player.getDisplayName().getUnformattedText() + " is not on a team." : player.getTeam())));
                 }
                 else if (args[0].equalsIgnoreCase("worldborder")) {
-                    player.addChatMessage(new TextComponentString("World Border Center: [X: " + world.getWorldBorder().getCenterX() + ", Z: " + world.getWorldBorder().getCenterZ() + "]"));
-                    player.addChatMessage(new TextComponentString("World Border Bounds: "));
-                        player.addChatMessage(new TextComponentString("    [Min X: " + world.getWorldBorder().minX() + ", Min Z: " + world.getWorldBorder().minZ() + "]"));
-                        player.addChatMessage(new TextComponentString("    [Max X: " + world.getWorldBorder().maxX() + ", Max Z: " + world.getWorldBorder().maxZ() + "]"));
-                    player.addChatMessage(new TextComponentString("World Border Size: " + world.getWorldBorder().getSize()));
-                    player.addChatMessage(new TextComponentString("World Border Target Size: " + world.getWorldBorder().getTargetSize()));
+                    player.sendMessage(new TextComponentString("World Border Center: [X: " + world.getWorldBorder().getCenterX() + ", Z: " + world.getWorldBorder().getCenterZ() + "]"));
+                    player.sendMessage(new TextComponentString("World Border Bounds: "));
+                        player.sendMessage(new TextComponentString("    [Min X: " + world.getWorldBorder().minX() + ", Min Z: " + world.getWorldBorder().minZ() + "]"));
+                        player.sendMessage(new TextComponentString("    [Max X: " + world.getWorldBorder().maxX() + ", Max Z: " + world.getWorldBorder().maxZ() + "]"));
+                    player.sendMessage(new TextComponentString("World Border Size: " + world.getWorldBorder().getSize()));
+                    player.sendMessage(new TextComponentString("World Border Target Size: " + world.getWorldBorder().getTargetSize()));
                 }
                 else if (args.length == 0) {
-                    player.addChatMessage(new TextComponentString("Usage: /worldinfo [ all | spawn | day | entity | seed | worldtype | difficulty | player | worldborder ]"));
+                    player.sendMessage(new TextComponentString("Usage: /worldinfo [ all | spawn | day | entity | seed | worldtype | difficulty | player | worldborder ]"));
                 }
             }
         }

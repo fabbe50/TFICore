@@ -15,6 +15,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 
 @SuppressWarnings("deprecation, unchecked")
 public class MetaBlockBase extends Block implements IMetaBlockName{
@@ -56,9 +57,9 @@ public class MetaBlockBase extends Block implements IMetaBlockName{
          *  return ((EnumType) state.getValue(TYPE)).getMetadata();
          */
 	}
-	
+
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         /*  Usage in class extending this:
          *  for (EnumType type : EnumType.values()) {
          *      list.add(new ItemStack(item, 1, type.getMetadata()))

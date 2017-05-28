@@ -3,6 +3,7 @@ package com.thefifthidiot.tficore.common.entity;
 import com.thefifthidiot.tficore.lib.Configs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -60,7 +61,7 @@ public class EntityFuseRockPrimed extends Entity {
             this.motionY -= 0.03999999910593033D;
         }
 
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.9800000190734863D;
         this.motionY *= 0.9800000190734863D;
         this.motionZ *= 0.9800000190734863D;
@@ -76,20 +77,20 @@ public class EntityFuseRockPrimed extends Entity {
         if (this.fuse <= 0) {
             this.setDead();
 
-            if (!this.worldObj.isRemote) {
+            if (!this.world.isRemote) {
                 this.explode();
             }
         }
         else {
             this.handleWaterMovement();
 
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+            this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
         }
     }
 
     private void explode() {
         float f = Configs.fuseRockStrength;
-        this.worldObj.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, f, true);
+        this.world.createExplosion(this, this.posX, this.posY + (double)(this.height / 16.0F), this.posZ, f, true);
     }
 
     protected void writeEntityToNBT(NBTTagCompound compound) {
